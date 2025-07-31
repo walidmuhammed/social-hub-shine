@@ -13,97 +13,35 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, hsl(240, 10%, 3.9%) 0%, hsl(240, 7%, 7%) 100%);
+            background: #EFF0F5;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .bg-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.2;
-            pointer-events: none;
-            animation: pulse 6s ease-in-out infinite;
-        }
-
-        .bg-orb-1 {
-            top: -160px;
-            right: -160px;
-            width: 320px;
-            height: 320px;
-            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
-        }
-
-        .bg-orb-2 {
-            bottom: -160px;
-            left: -160px;
-            width: 320px;
-            height: 320px;
-            background: linear-gradient(135deg, hsl(271, 81%, 56%), hsl(220, 100%, 50%));
-            animation-delay: 2s;
-        }
-
-        .bg-orb-3 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 240px;
-            height: 240px;
-            background: linear-gradient(135deg, hsl(220, 100%, 50%), hsl(346, 77%, 49%));
-            opacity: 0.1;
-            animation-delay: 4s;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.2; }
-            50% { transform: scale(1.1); opacity: 0.3; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 20px hsla(346, 77%, 49%, 0.3); }
-            50% { box-shadow: 0 0 40px hsla(346, 77%, 49%, 0.6); }
+            color: #0E1B4D;
         }
 
         /* Container */
+
         .container {
             width: 100%;
             max-width: 400px;
-            z-index: 10;
         }
 
-        /* Glass Card Effect */
-        .glass-card {
-            background: hsla(240, 5%, 26%, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid hsla(0, 0%, 100%, 0.1);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Simple Card */
+        .simple-card {
+            background: white;
+            border: 1px solid #D1D5DB;
+            border-radius: 16px;
+            transition: all 0.2s ease;
             margin-bottom: 24px;
-        }
-
-        .glass-card:hover {
-            box-shadow: 0 0 40px hsla(346, 77%, 49%, 0.3);
-            transform: translateY(-2px);
         }
 
         /* Profile Card */
         .profile-card {
             padding: 32px;
             text-align: center;
-            animation: float 6s ease-in-out infinite;
         }
 
         .avatar-container {
@@ -113,26 +51,23 @@
         }
 
         .avatar {
-            width: 96px;
-            height: 96px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid hsla(346, 77%, 49%, 0.2);
-            box-shadow: 0 0 40px hsla(346, 77%, 49%, 0.3);
         }
 
         .online-indicator {
             position: absolute;
-            bottom: -8px;
-            right: -8px;
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
+            bottom: -4px;
+            right: -4px;
+            width: 16px;
+            height: 16px;
+            background: #10b981;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: pulseGlow 2s infinite;
         }
 
         .online-dot {
@@ -142,18 +77,15 @@
             border-radius: 50%;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 24px;
-            font-weight: bold;
+        .simple-text {
+            color: #0E1B4D;
+            font-size: 20px;
+            font-weight: 600;
             margin-bottom: 8px;
         }
 
         .subtitle {
-            color: hsl(240, 5%, 64%);
+            color: #6B7280;
             font-size: 14px;
             margin-bottom: 24px;
         }
@@ -164,7 +96,7 @@
             justify-content: center;
             gap: 8px;
             font-size: 12px;
-            color: hsl(240, 5%, 64%);
+            color: #6B7280;
         }
 
         .status-dot {
@@ -172,7 +104,6 @@
             height: 8px;
             background: #10b981;
             border-radius: 50%;
-            animation: pulseGlow 2s infinite;
         }
 
         /* Buttons */
@@ -181,50 +112,40 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 16px 32px;
+            padding: 16px 24px;
             border: none;
-            border-radius: 16px;
+            border-radius: 8px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 500;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
             cursor: pointer;
             margin-bottom: 16px;
             gap: 12px;
         }
 
-        .btn-gradient {
-            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
+        .btn-primary {
+            background: #0E1B4D;
             color: white;
-            box-shadow: 0 0 40px hsla(346, 77%, 49%, 0.3);
         }
 
-        .btn-gradient:hover {
-            background: linear-gradient(135deg, hsl(271, 81%, 56%), hsl(220, 100%, 50%));
-            transform: translateY(-2px);
-            box-shadow: 0 0 60px hsla(346, 77%, 49%, 0.5);
+        .btn-primary:hover {
+            background: #1a2b61;
         }
 
-        .btn-glass {
-            background: hsla(240, 5%, 26%, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid hsla(0, 0%, 100%, 0.1);
-            color: hsl(0, 0%, 98%);
+        .btn-secondary {
+            background: white;
+            color: #0E1B4D;
+            border: 1px solid #D1D5DB;
         }
 
-        .btn-glass:hover {
-            color: hsl(0, 0%, 98%);
-            background: hsla(346, 77%, 49%, 0.1);
+        .btn-secondary:hover {
+            background: #F9FAFB;
         }
 
         .btn-icon {
             width: 20px;
             height: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .btn:hover .btn-icon {
-            transform: scale(1.1);
         }
 
         /* Social Links */
@@ -238,11 +159,8 @@
         .social-title {
             text-align: center;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 18px;
+            color: #0E1B4D;
+            font-size: 16px;
             font-weight: 600;
         }
 
@@ -250,52 +168,44 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            background: hsl(240, 10%, 3.9%);
-            border: 1px solid hsl(240, 5%, 26%);
-            color: hsl(0, 0%, 98%);
+            aspect-ratio: 1;
+            border-radius: 12px;
+            background: white;
+            border: 1px solid #D1D5DB;
             text-decoration: none;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
+            transition: all 0.2s ease;
         }
 
         .social-btn:hover {
-            transform: scale(1.1) rotate(5deg);
-            color: hsl(0, 0%, 98%);
+            border-color: #0E1B4D;
+            background: #F9FAFB;
         }
 
-        .social-btn.facebook:hover {
-            background: hsl(221, 44%, 41%);
+        .social-btn.facebook {
+            color: #1877f2;
         }
 
-        .social-btn.instagram:hover {
-            background: linear-gradient(45deg, hsl(329, 100%, 50%), hsl(271, 81%, 56%), hsl(220, 100%, 50%));
+        .social-btn.instagram {
+            color: #e4405f;
         }
 
-        .social-btn.tiktok:hover {
-            background: hsl(0, 0%, 0%);
+        .social-btn.tiktok {
+            color: #000;
         }
 
-        .social-btn.whatsapp:hover {
-            background: hsl(122, 39%, 49%);
+        .social-btn.whatsapp {
+            color: #25d366;
         }
 
         .social-icon {
             width: 24px;
             height: 24px;
-            transition: transform 0.3s ease;
-        }
-
-        .social-btn:hover .social-icon {
-            transform: scale(1.1);
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            color: hsl(240, 5%, 64%);
+            color: #6B7280;
             font-size: 12px;
             padding: 16px 0;
         }
@@ -317,14 +227,9 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-orb bg-orb-1"></div>
-    <div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div>
-
     <div class="container">
         <!-- Profile Card -->
-        <div class="glass-card profile-card">
+        <div class="simple-card profile-card">
             <div class="avatar-container">
                 <img src="https://ucarecdn.com/f5927e5b-8bf2-4812-a630-922c284601a2/-/format/auto/-/preview/3000x3000/-/quality/lighter/dl.beatsnoop.com-hq-1936985320-ykLqmo5Ua3.jpg" 
                      alt="Profile" class="avatar">
@@ -333,8 +238,8 @@
                 </div>
             </div>
             
-            <h1 class="gradient-text">Your favorite PJs Dealer</h1>
-            <p class="subtitle">Premium sleepwear & comfort essentials ✨</p>
+            <h1 class="simple-text">Your favorite PJs Dealer</h1>
+            <p class="subtitle">Premium sleepwear & comfort essentials</p>
             
             <div class="status-info">
                 <div class="status-dot"></div>
@@ -346,17 +251,14 @@
 
         <!-- Action Buttons -->
         <div>
-            <a href="https://wizzlb.com/" target="_blank" class="btn btn-gradient">
+            <a href="https://wizzlb.com/" target="_blank" class="btn btn-primary">
                 <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v12z"/>
                 </svg>
                 Shop Now
-                <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
             </a>
             
-            <a href="https://wizzlb.com/pages/contact" target="_blank" class="btn btn-glass">
+            <a href="https://wizzlb.com/pages/contact" target="_blank" class="btn btn-secondary">
                 <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
                 </svg>
@@ -365,7 +267,7 @@
         </div>
 
         <!-- Social Links -->
-        <div class="glass-card">
+        <div class="simple-card">
             <h3 class="social-title">Connect with us</h3>
             <div class="social-grid">
                 <a href="https://www.facebook.com/wizzshoplb" target="_blank" class="social-btn facebook">
@@ -396,7 +298,7 @@
 
         <!-- Footer -->
         <div class="footer">
-            <p>© 2024 Wizz.lb • Made with ❤️</p>
+            <p>© 2024 Wizz.lb</p>
         </div>
     </div>
 </body>

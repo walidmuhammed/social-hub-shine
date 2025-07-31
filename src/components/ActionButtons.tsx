@@ -14,22 +14,21 @@ export const ActionButtons = () => {
     <div className="space-y-4">
       <Button 
         onClick={handleShopClick}
-        variant="gradient" 
-        size="xl" 
-        className="w-full group"
+        variant="default" 
+        size="lg" 
+        className="w-full"
       >
-        <ShoppingBag className="mr-3 group-hover:scale-110 transition-transform" />
+        <ShoppingBag className="mr-3" />
         Shop Now
-        <Sparkles className="ml-3 group-hover:rotate-12 transition-transform" />
       </Button>
       
       <Button 
         onClick={handleContactClick}
-        variant="glass" 
+        variant="outline" 
         size="lg" 
-        className="w-full group"
+        className="w-full"
       >
-        <MessageSquare className="mr-3 group-hover:scale-110 transition-transform" />
+        <MessageSquare className="mr-3" />
         Contact Us
       </Button>
     </div>
