@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Linktree</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, hsl(240, 10%, 3.9%) 0%, hsl(240, 7%, 7%) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.2;
+            pointer-events: none;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .bg-orb-1 {
+            top: -160px;
+            right: -160px;
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
+        }
+
+        .bg-orb-2 {
+            bottom: -160px;
+            left: -160px;
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(135deg, hsl(271, 81%, 56%), hsl(220, 100%, 50%));
+            animation-delay: 2s;
+        }
+
+        .bg-orb-3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 240px;
+            height: 240px;
+            background: linear-gradient(135deg, hsl(220, 100%, 50%), hsl(346, 77%, 49%));
+            opacity: 0.1;
+            animation-delay: 4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.2; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px hsla(346, 77%, 49%, 0.3); }
+            50% { box-shadow: 0 0 40px hsla(346, 77%, 49%, 0.6); }
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 400px;
+            z-index: 10;
+        }
+
+        /* Glass Card Effect */
+        .glass-card {
+            background: hsla(240, 5%, 26%, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid hsla(0, 0%, 100%, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 24px;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 0 40px hsla(346, 77%, 49%, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Profile Card */
+        .profile-card {
+            padding: 32px;
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .avatar-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid hsla(346, 77%, 49%, 0.2);
+            box-shadow: 0 0 40px hsla(346, 77%, 49%, 0.3);
+        }
+
+        .online-indicator {
+            position: absolute;
+            bottom: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: hsl(240, 5%, 64%);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .status-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+            color: hsl(240, 5%, 64%);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* Buttons */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
+            color: white;
+            box-shadow: 0 0 40px hsla(346, 77%, 49%, 0.3);
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, hsl(271, 81%, 56%), hsl(220, 100%, 50%));
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px hsla(346, 77%, 49%, 0.5);
+        }
+
+        .btn-glass {
+            background: hsla(240, 5%, 26%, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid hsla(0, 0%, 100%, 0.1);
+            color: hsl(0, 0%, 98%);
+        }
+
+        .btn-glass:hover {
+            color: hsl(0, 0%, 98%);
+            background: hsla(346, 77%, 49%, 0.1);
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .btn-icon {
+            transform: scale(1.1);
+        }
+
+        /* Social Links */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 24px;
+        }
+
+        .social-title {
+            text-align: center;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, hsl(346, 77%, 49%), hsl(271, 81%, 56%));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: hsl(240, 10%, 3.9%);
+            border: 1px solid hsl(240, 5%, 26%);
+            color: hsl(0, 0%, 98%);
+            text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            color: hsl(0, 0%, 98%);
+        }
+
+        .social-btn.facebook:hover {
+            background: hsl(221, 44%, 41%);
+        }
+
+        .social-btn.instagram:hover {
+            background: linear-gradient(45deg, hsl(329, 100%, 50%), hsl(271, 81%, 56%), hsl(220, 100%, 50%));
+        }
+
+        .social-btn.tiktok:hover {
+            background: hsl(0, 0%, 0%);
+        }
+
+        .social-btn.whatsapp:hover {
+            background: hsl(122, 39%, 49%);
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-btn:hover .social-icon {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: hsl(240, 5%, 64%);
+            font-size: 12px;
+            padding: 16px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                max-width: 350px;
+            }
+            
+            .profile-card {
+                padding: 24px;
+            }
+            
+            .social-grid {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+
+    <div class="container">
+        <!-- Profile Card -->
+        <div class="glass-card profile-card">
+            <div class="avatar-container">
+                <img src="https://ucarecdn.com/f5927e5b-8bf2-4812-a630-922c284601a2/-/format/auto/-/preview/3000x3000/-/quality/lighter/dl.beatsnoop.com-hq-1936985320-ykLqmo5Ua3.jpg" 
+                     alt="Profile" class="avatar">
+                <div class="online-indicator">
+                    <div class="online-dot"></div>
+                </div>
+            </div>
+            
+            <h1 class="gradient-text">Your favorite PJs Dealer</h1>
+            <p class="subtitle">Premium sleepwear & comfort essentials ✨</p>
+            
+            <div class="status-info">
+                <div class="status-dot"></div>
+                <span>Online now</span>
+                <span>•</span>
+                <span>Fast shipping worldwide</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div>
+            <a href="https://wizzlb.com/" target="_blank" class="btn btn-gradient">
+                <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v12z"/>
+                </svg>
+                Shop Now
+                <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </a>
+            
+            <a href="https://wizzlb.com/pages/contact" target="_blank" class="btn btn-glass">
+                <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                </svg>
+                Contact Us
+            </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="glass-card">
+            <h3 class="social-title">Connect with us</h3>
+            <div class="social-grid">
+                <a href="https://www.facebook.com/wizzshoplb" target="_blank" class="social-btn facebook">
+                    <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                
+                <a href="https://www.instagram.com/wizz.lb/" target="_blank" class="social-btn instagram">
+                    <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                
+                <a href="https://www.tiktok.com/@wizz.lb" target="_blank" class="social-btn tiktok">
+                    <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                </a>
+                
+                <a href="https://wa.me/+96178976290" target="_blank" class="social-btn whatsapp">
+                    <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.515 3.506"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 Wizz.lb • Made with ❤️</p>
+        </div>
+    </div>
+</body>
+</html>
