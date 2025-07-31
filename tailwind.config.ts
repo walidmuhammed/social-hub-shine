@@ -61,7 +61,30 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Social Media Colors
+				facebook: 'hsl(var(--facebook))',
+				whatsapp: 'hsl(var(--whatsapp))',
+				// Glass Effects
+				glass: {
+					bg: 'var(--glass-bg)',
+					border: 'var(--glass-border)'
 				}
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-secondary': 'var(--gradient-secondary)',
+				'gradient-accent': 'var(--gradient-accent)',
+				'gradient-bg': 'var(--gradient-bg)',
+				'instagram': 'var(--instagram)'
+			},
+			boxShadow: {
+				'soft': 'var(--shadow-soft)',
+				'glow': 'var(--shadow-glow)',
+				'card': 'var(--shadow-card)'
+			},
+			transitionTimingFunction: {
+				'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
