@@ -1,23 +1,15 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import profileImage from "@/assets/profile-image.jpg";
-
 export const ProfileCard = () => {
-  return (
-    <div className="simple-card rounded-2xl p-8 text-center">
+  return <div className="simple-card rounded-2xl p-8 text-center">
       <div className="relative mx-auto mb-6">
         <Avatar className="h-20 w-20 mx-auto">
-          <AvatarImage 
-            src={profileImage} 
-            alt="Profile" 
-            className="object-cover"
-          />
+          <AvatarImage src={profileImage} alt="Profile" className="object-cover" />
           <AvatarFallback className="bg-primary text-primary-foreground text-xl font-bold">
             PJ
           </AvatarFallback>
         </Avatar>
-        <div className="absolute -bottom-1 -right-1 h-4 w-4 bg-green-500 rounded-full flex items-center justify-center">
-          <div className="h-2 w-2 bg-white rounded-full"></div>
-        </div>
+        
       </div>
       
       <h1 className="text-xl font-bold mb-2 simple-text">
@@ -36,6 +28,5 @@ export const ProfileCard = () => {
         <span>•</span>
         <span>Fast shipping worldwide</span>
       </div>
-    </div>
-  );
+    </div>;
 };
