@@ -25,8 +25,8 @@ export const ProfileCard = () => {
           <div className="h-2 w-2 bg-green-500 rounded-full"></div>
           <span>Online now</span>
         </div>
-        <span>•</span>
-        <span>Fast shipping worldwide</span>
+        
+        
       </div>
     </div>;
 };
