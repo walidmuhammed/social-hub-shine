@@ -49,13 +49,13 @@ export const SocialLinks = () => {
       <h3 className="text-lg font-semibold mb-4 text-center gradient-text">
         Connect with us
       </h3>
-      <div className="space-y-3">
+      <div className="grid grid-cols-2 gap-3">
         {socialLinks.map((social) => (
           <Button
             key={social.name}
             variant="outline"
             asChild
-            className={`w-full h-14 ${social.color} text-white border-0 transition-all duration-300 flex items-center justify-start gap-4 px-6`}
+            className={`w-full h-14 ${social.color} text-white border-0 transition-all duration-300 flex items-center justify-center gap-3`}
           >
             <a 
               href={social.href} 
@@ -63,9 +63,9 @@ export const SocialLinks = () => {
               rel="noopener noreferrer"
               aria-label={social.name}
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 {social.icon}
-                <span className="font-medium text-lg">{social.name}</span>
+                <span className="font-medium text-sm">{social.name}</span>
               </div>
             </a>
           </Button>
